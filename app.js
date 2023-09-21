@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import router from './routes/user-routes.js';
 import blogRouter from './routes/blog-routes.js';
 
-import apiDocs from './swagger.json' assert {type: 'json'};
+import apiDocs from './swagger.json';
 import jwtAuth from './middlewares/jwtMiddleware.js';
 const app = express();
 app.use(express.json());
