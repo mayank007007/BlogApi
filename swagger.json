@@ -1,0 +1,288 @@
+{
+    "openapi":"3.0.0",
+    "info":{
+        "version":"1.0.0",
+        "description":"API for Blog Application",
+        "title":"Blog API"
+    },
+
+    "servers":[
+        {
+            "url":"http://localhost:5000"
+        }
+    ],
+
+    "components":{
+        "securitySchemes":{
+"JWT":{
+    "in":"header",
+    "name":"Authorization",
+    "type":"apiKey"
+}
+        }
+    },
+
+    "paths":{
+        "/api/blog":{
+            "get":{
+                "tags":["Blogs"],
+                "summary":"Get Blogs",
+                "description":"User will get all blogs",
+                "security":[{"JWT": {} }],
+                "responses":{
+                    "200":{
+                        "description":"OK"
+                    },
+                    "401":{
+                        "description":"Unauthorized"
+                    }
+                }
+            }
+        },
+        "/api/blog/add":{
+            "post":{
+                "tags":["Blogs"],
+                "summary":"Add a new blog",
+                "description":"Blog will be added",
+                "security":[{"JWT": {} }],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type":"object",
+                                "properties":{
+                                    "title":{
+                                        "type":"string"
+                                    },
+                                    "description":{
+                                        "type":"string"
+                                    },
+                                    "image":{
+                                        "type":"string"
+                                    },
+                                    "user":{
+                                        "type":"string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+            },
+            "responses":{
+                "200":{
+                    "description":"OK"
+                },
+                "400":{
+                    "description":"Unable to find user"
+                }
+            }
+        }},
+        "/api/blog/update/{id}":{
+            "put":{
+                "tags":["Blogs"],
+                "summary":"Update a blog by its id",
+                "description":"Blog will be updated",
+                "security":[{"JWT": {} }],
+                "parameters":[
+                    {
+                        "in":"path",
+                        "name":"id",
+                        "required":true,
+                        "description": "The ID of the blog post to retrieve.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type":"object",
+                                "properties":{
+                                    "title":{
+                                        "type":"string"
+                                    },
+                                    "description":{
+                                        "type":"string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+            },
+            "responses":{
+                "200":{
+                    "description":"OK"
+                },
+                "400":{
+                    "description":"Unable to find user"
+                }
+            }
+        }},
+        "/api/blog/{id}":{
+            "get":{
+                "tags": ["Blogs"],
+                "summary": "Get a specific blog by ID",
+                "description": "Retrieve a specific blog post by its unique ID.",
+                
+                "parameters":[
+                    {
+                        "in":"path",
+                        "name":"id",
+                        "required":true,
+                        "description": "The ID of the blog post to retrieve.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "security":[{"JWT": {} }],
+                "responses":{
+                    "200":{
+                        "description":"OK"
+                    },
+                    "500":{
+                        "description":"Unable to find blog "
+                    }
+                }
+            },
+            "delete":{
+                "tags": ["Blogs"],
+                "summary": "Delete the blog by giving blog ID",
+                "description": "Delete blog posts by blog ID.",
+                "parameters":[
+                    {
+                        "in":"path",
+                        "name":"id",
+                        "required":true,
+                        "description": "The ID of the user to retrieve the blogs created by user.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "security":[{"JWT": {} }],
+                "responses":{
+                    "200":{
+                        "description":"Successfully Deleted"
+                    },
+                    "500":{
+                        "description":"Unable to delete blog "
+                    }
+                }
+            }
+        },
+        "/api/blog/user/{id}":{
+            "get":{
+                "tags": ["Blogs"],
+                "summary": "Get all the blogs by user ID",
+                "description": "Retrieve all blog posts by user ID.",
+                "parameters":[
+                    {
+                        "in":"path",
+                        "name":"id",
+                        "required":true,
+                        "description": "The ID of the user to retrieve the blogs created by user.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "security":[{"JWT": {} }],
+                "responses":{
+                    "200":{
+                        "description":"OK"
+                    },
+                    "500":{
+                        "description":"Unable to find blog "
+                    }
+                }
+            }
+        },
+        "/api/user/login":{
+            "post":{
+                "tags":["Users"],
+                "summary":"Login",
+                "description":"User login to get token",
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type":"object",
+                                "properties":{
+                                    "email":{
+                                        "type":"string"
+                                    },
+                                    "password":{
+                                        "type":"string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description":"OK"
+                    },
+                    "400":{
+                        "description":"Incorrect Credentials"
+                    }
+                }
+            }
+        },
+        "/api/user/signup":{
+            "post":{
+                "tags":["Users"],
+                "summary":"Signup",
+                "description":"User Signup  to use api",
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type":"object",
+                                "properties":{
+                                    "name":{
+                                        "type":"string"
+                                    },
+                                    "email":{
+                                        "type":"string"
+                                    },
+                                    "password":{
+                                        "type":"string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "201":{
+                        "description":"OK"
+                    },
+                    "400":{
+                        "description":"Incorrect Credentials"
+                    }
+                }
+            }
+        
+        },
+        "/api/user/":{
+            "get":{
+                "tags":["Users"],
+                "summary":"Get Users",
+                "description":"User will get all the users",
+                "security":[{"JWT": {} }],
+                "responses":{
+                    "200":{
+                        "description":"OK"
+                    },
+                    "401":{
+                        "description":"Unauthorized"
+                    }
+                }
+            }
+        }
+    }
+}
