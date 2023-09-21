@@ -75,7 +75,7 @@ This is a robust REST API backend for a blogging platform using cutting-edge tec
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `string` | **Required**. Id of blog to fetch |
 
-#### App a blog to a particular user's id
+#### Add a blog to a particular user's id
 
 ```http
   POST https://blog-api-yjfx.onrender.com/api/blog/add
