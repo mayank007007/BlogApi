@@ -12,9 +12,9 @@ app.use(express.json());
 //hN2GBjK6mY7hkNK2
 app.use('/api/user', router);
 app.use('/api/blog', jwtAuth, blogRouter);
-app.use('/', swagger.serve, swagger.setup(apiDocs));
+app.use('/api-docs', swagger.serve, swagger.setup(apiDocs));
 app.use((req, res) => {
-    res.status(404).send('API not found. Please check our docs at localhost:3200/api-docs');
+    res.status(404).send('API not found. Please check our docs at localhost:5000/');
 });
 mongoose.connect('mongodb+srv://mayanksaraswat77:WLC14CHVVGXn49Et@issue-tracker.bhysxdn.mongodb.net/Blog?retryWrites=true&w=majority'
 ).then(() => {
