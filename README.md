@@ -80,7 +80,9 @@ This is a robust REST API backend for a blogging platform using cutting-edge tec
 ```http
   POST https://blog-api-yjfx.onrender.com/api/blog/add
 ```
+
 - Provide the below parameters in json raw body of postman by making sure you have put Authorization key in headers
+
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `title`      | `string` | **Required**. Title of blog |
@@ -95,6 +97,7 @@ This is a robust REST API backend for a blogging platform using cutting-edge tec
 ```
 - The above id parameter is blogid you want to update
 - Provide the below parameters in json raw body of postman by making sure you have put Authorization key in headers
+
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `title`      | `string` | **Required**. Title of blog |
